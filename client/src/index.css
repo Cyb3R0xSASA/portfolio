@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+* {
+    font-family: 'Montserrat', 'sans-serif';
+}
+
+@keyframes rotateBorder {
+    0% {
+        transform: rotate(0deg) translate(-25%, -25%);
+    }
+    100% {
+        transform: rotate(360deg) translate(-25%, -25%);
+    }
+}
+
+.neon-border {
+    position: relative;
+    overflow: hidden;
+}
+
+.neon-border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        from 0deg,
+        #c41e3a,
+        transparent 25%,
+        #c41e3a 50%,
+        transparent 75%,
+        #c41e3a
+    );
+    animation: rotateBorder 4s linear infinite;
+    z-index: 0;
+    filter: blur(6px);
+}
+
+.neon-border img {
+    position: relative;
+    z-index: 10;
+    border: 4px solid transparent;
+    border-radius: 0.5rem;
+}
+
+@keyframes spinBorder {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.rotate-border {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: calc(100% + 16px);
+    height: calc(100% + 16px);
+    border-radius: 9999px;
+    background: conic-gradient(
+        from 0deg,
+        #c41e3a,
+        transparent 25%,
+        #e49e1b 50%,
+        transparent 75%,
+        #e22b68
+    );
+    animation: spinBorder 4s linear infinite;
+    filter: blur(6px);
+    z-index: 0;
+}
+
+@layer utilities {
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+  
+    /* The scrolling track: flex row, double-width */
+    .animate-scroll {
+      display: flex;
+      width: 200%;
+      animation: scroll 25s linear infinite;
+      will-change: transform;
+    }
+  
+    /* Pause on hover */
+    .animate-scroll:hover {
+      animation-play-state: paused;
+    }
+  }
+  
